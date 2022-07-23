@@ -1,1 +1,42 @@
-<p>detalle works!</p>
+
+<form>
+    <div class="row g-3">
+        <div class="col-auto">
+            <img [src]="pelicula.foto" alt="">
+        </div>
+        <div class="col-auto">
+            <div class="row mb-3">
+                <div class="col-3">
+                    <label for="tituloPelicula" class="form-label">Tìtulo</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="tituloPelicula" [value]="pelicula.titulo">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-3">
+                    <label for="generoPelicula" class="form-label">Género</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="generoPelicula" [value]="pelicula.genero">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-3">
+                    <label for="directorPelicula" class="form-label">Director</label>
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="directorPelicula" [value]="pelicula.director">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-auto">
+                    <button type="menu" class="btn btn-secondary">Volver</button>
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+  </form>

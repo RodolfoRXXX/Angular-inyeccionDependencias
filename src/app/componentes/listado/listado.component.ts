@@ -9,11 +9,9 @@ import { PeliculasService } from 'src/app/servicios/peliculas.service';
 })
 export class ListadoComponent implements OnInit {
   peliculas: Pelicula[];
-  peliculaSeleccionada: number = 0;
+  peliculaSeleccionada: number;
 
-  constructor( private svcPeliculas:PeliculasService ) { 
-    this.peliculas = [];
-   }
+  constructor( private svcPeliculas:PeliculasService ) { }
 
   ngOnInit(): void {
     this.obtenerListado();
