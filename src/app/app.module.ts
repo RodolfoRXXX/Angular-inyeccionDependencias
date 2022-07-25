@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { ListadoComponent } from './componentes/listado/listado.component';
 import { DetalleComponent } from './componentes/detalle/detalle.component';
 import { EncabezadoComponent } from './componentes/encabezado/encabezado.component';
+import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -14,7 +16,8 @@ import { EncabezadoComponent } from './componentes/encabezado/encabezado.compone
     EncabezadoComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

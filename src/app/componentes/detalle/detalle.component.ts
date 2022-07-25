@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { Pelicula } from 'src/app/entidades/pelicula';
-import { PeliculasService } from 'src/app/servicios/peliculas.service';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Pelicula } from '../../entidades/pelicula';
+import { PeliculasService } from '../../servicios/peliculas.service';
 
 @Component({
   selector: 'app-detalle',
@@ -8,24 +9,55 @@ import { PeliculasService } from 'src/app/servicios/peliculas.service';
   styleUrls: ['./detalle.component.css']
 })
 export class DetalleComponent implements OnInit {
-  pelicula: Pelicula;
 
   @Input()
-  idPelicula:number;
+  id_pelicula: number;
+
+  @Output()
+  cancelar = new EventEmitter();
+
+  pelicula: Pelicula;
+  formEdicion: any;
+  mostrar:boolean = false;
 
   constructor( private svcPelicula: PeliculasService ) { }
 
   ngOnInit(): void {
-    if(this.idPelicula){
-      this.buscarPelicula( this.idPelicula );
-    }
+      this.buscarPelicula( this.id_pelicula );
+  }
+
+  onSubmit(){
+    console.log(this.formEdicion.valid);
+    this.mostrar = true;
+  }
+
+  cancelarEdicion(){
+    this.cancelar.emit(false);
   }
 
   buscarPelicula( id: number ){
     this.svcPelicula.buscarPelicula( id )
-    .suscribe(data => {
+    .subscribe(data => {
       this.pelicula = data;
+    })
+    this.formEdicion = new FormGroup ({
+      titulo: new FormControl(this.pelicula.titulo,[
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(30)
+      ]),
+      genero: new FormControl(this.pelicula.genero, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(30)
+      ]),
+      director: new FormControl(this.pelicula.director, [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(30)
+      ])
     })
   }
 
 }
+

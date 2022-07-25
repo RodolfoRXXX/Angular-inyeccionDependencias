@@ -17,8 +17,12 @@ export class PeliculasService {
 
   buscarPelicula(id:number) : Observable<Pelicula>{
     return new Observable( (observer:Observer<Pelicula>) => {
-      const result = PELICULAS.find( pelicula => pelicula.id_pelicula === id );
-      observer.next(result);
+      const result = PELICULAS.find(pelicula => pelicula.id_pelicula === id);
+      if(result == undefined){
+        observer.error(result);
+      } else{
+        observer.next(result);
+      }
       observer.complete();
     })
   }

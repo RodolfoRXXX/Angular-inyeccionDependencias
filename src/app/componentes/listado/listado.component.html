@@ -20,5 +20,5 @@
   </table>
 
   <div *ngIf="peliculaSeleccionada" >
-    <app-detalle [idPelicula]="peliculaSeleccionada" ></app-detalle>
+    <app-detalle [id_pelicula]="peliculaSeleccionada" (cancelar)="cancelarEdicion($event)"></app-detalle>
   </div>

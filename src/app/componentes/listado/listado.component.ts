@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Pelicula } from 'src/app/entidades/pelicula';
 import { PeliculasService } from 'src/app/servicios/peliculas.service';
 
@@ -10,6 +10,7 @@ import { PeliculasService } from 'src/app/servicios/peliculas.service';
 export class ListadoComponent implements OnInit {
   peliculas: Pelicula[];
   peliculaSeleccionada: number;
+  
 
   constructor( private svcPeliculas:PeliculasService ) { }
 
@@ -19,7 +20,10 @@ export class ListadoComponent implements OnInit {
 
   editarPelicula( id:number ){
     this.peliculaSeleccionada = id;
-    console.log(this.peliculaSeleccionada);
+  }
+
+  cancelarEdicion( estado:any ){
+    this.peliculaSeleccionada = estado;
   }
 
   obtenerListado(){
